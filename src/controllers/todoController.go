@@ -26,10 +26,11 @@ func CreateTodo(c *fiber.Ctx) error {
 			"claims": claims,
 		})
 	}
-	isSubscribed, ok := claims["is_subscribed"].(bool)
+	userEmail, ok := claims["email"].(string)
 	if !ok {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"error": "Invalid token claims",
+			"error":  "Invalid token claims",
+			"claims": claims,
 		})
 	}
 	if err := c.BodyParser(&input); err != nil {
@@ -42,9 +43,10 @@ func CreateTodo(c *fiber.Ctx) error {
 	if errors := helpers.ValidateStruct(policy); len(errors) > 0 {
 		return c.Status(fiber.StatusUnprocessableEntity).JSON(errors)
 	}
+	user := models.GetDetailUser(userEmail)
 
 	countTodos := helpers.CountData("todos", int(userId))
-	if countTodos >= 10 && !isSubscribed {
+	if countTodos >= 10 && !user.IsSubscribed {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"message": fmt.Sprintf("You have an limit todos, please subscribe before, your todos now is %v", countTodos),
 			"limit":   10,

@@ -59,7 +59,7 @@ func LoginUser(c *fiber.Ctx) error {
 			"message": "Failed to parse request body",
 			"error":   err.Error(),
 		})
-	}	
+	}
 	user := middlewares.XSSClean(&input).(*models.LoginUser)
 	if errors := helpers.ValidateStruct(user); len(errors) > 0 {
 		return c.Status(fiber.StatusUnprocessableEntity).JSON(errors)
@@ -78,8 +78,8 @@ func LoginUser(c *fiber.Ctx) error {
 		})
 	}
 	payload := map[string]interface{}{
-		"id":           userExists.ID,
-		"email":        userExists.Email,
+		"id":            userExists.ID,
+		"email":         userExists.Email,
 		"is_subscribed": userExists.IsSubscribed,
 	}
 	secretKey := os.Getenv("JWT_KEY")
@@ -119,5 +119,19 @@ func GetDetailUser(c *fiber.Ctx) error {
 		"statusCode": 200,
 		"user":       user,
 		"message":    "Successfully get user",
+	})
+}
+
+func UserSubscription(c *fiber.Ctx) error {
+	claims := middlewares.GetUserClaims(c)
+	id := claims["id"].(float64)
+	if err := models.UserSubscription(int(id)); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"message": "Failed to subscribe",
+			"error":   err.Error(),
+		})
+	}
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"message": "Successfully subscribe",
 	})
 }

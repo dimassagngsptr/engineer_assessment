@@ -16,10 +16,10 @@ type User struct {
 }
 type APITodo struct {
 	gorm.Model
-	Title       string    `json:"title" validate:"required"`
-	Description string    `json:"description" validate:"required,min=3,max=1024"`
-	Completed   bool      `json:"completed"`
-	UserID      int       `json:"user_id" validate:"required"`
+	Title       string `json:"title" validate:"required"`
+	Description string `json:"description" validate:"required,min=3,max=1024"`
+	Completed   bool   `json:"completed"`
+	UserID      int    `json:"user_id" validate:"required"`
 }
 
 type LoginUser struct {
@@ -48,4 +48,9 @@ func GetDetailUser(email string) *User {
 		return db.Model(&Todo{}).Find(&todo)
 	}).First(&user, "email = ?", email)
 	return &user
+}
+
+func UserSubscription(id int) error {
+	result := configs.DB.Model(&User{}).Where("id = ?", id).Update("is_subscribed", true)
+	return result.Error
 }
