@@ -7,7 +7,7 @@
     <br />
     <br />
     ·
-    <a href="https://github.com/dimassagngsptr/engineer_assessment.git" target="_blank">View Back-End Code</a>
+    <a href="https://github.com/dimassagngsptr/engineer_assessment/tree/backend-todo-app" target="_blank">View Back-End Code</a>
   </p>
 </div>
 
