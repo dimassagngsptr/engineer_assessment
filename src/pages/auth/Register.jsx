@@ -27,7 +27,7 @@ const Register = () => {
     navigate("/login");
   };
   return (
-    <main className="w-screen h-screen bg-gray-50">
+    <main className="w-full h-screen bg-gray-50">
       <div className="flex flex-col justify-center items-center h-screen gap-y-4">
         <div className="bg-white p-8 rounded-md">
           <div className="flex gap-x-3 items-center justify-center">
