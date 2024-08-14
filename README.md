@@ -149,5 +149,5 @@ yarn dev
 
 ### License
 
-Distributed under the MIT License. See [`LICENSE`](https://github.com/dimassagngsptr/food-recipe/blob/master/LICENSE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/dimassagngsptr/engineer_assessment/blob/todo-app/LICENSE) for more information.
 
