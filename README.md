@@ -76,7 +76,7 @@ POSTGRES_URL="postgresql://postgres:postgres@127.0.0.1:5432/backend_test_1"
 
 ### Documentation
 
-Access the API documentation for the **Blanja** project. Use this documentation to test endpoints and understand the structure and functionality of the available APIs in this project.
+Access the API documentation for the **Todo** project. Use this documentation to test endpoints and understand the structure and functionality of the available APIs in this project.
 
 [![Blanja Innovation API Postman Documentation](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/29288801/2sA3s6EUyX)
 
